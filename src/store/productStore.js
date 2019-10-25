@@ -15,53 +15,57 @@ export default class {
 
   @action loadProduct = () => {
     return new Promise((resolve, reject) => {
-      this.api.all()
-        .then(response => {
-          this.products = response;
-          resolve(true);
-        })
-        .catch((e) => {
-          reject(e);
-        });
-    })
+      setTimeout(() => {
+        this.products = getProducts();
+        resolve();
+      }, 500);
+      // this.api.all()
+      //   .then(response => {
+      //     this.products = response;
+      //     resolve(true);
+      //   })
+      //   .catch((e) => {
+      //     reject(e);
+      //   });
+    });
   }
 
 }
 
 // server api
-// function getProducts() {
-//   return [
-//     {
-//       id: 100,
-//       title: 'Ipnone 200',
-//       price: 12000,
-//       rest: 10,
-//       current: 1,
-//       imgSrc: '/dist/img/iphone.png'
-//     },
-//     {
-//       id: 101,
-//       title: 'Samsung AAZ8',
-//       price: 22000,
-//       rest: 5,
-//       current: 1,
-//       imgSrc: '/dist/img/samsung.png'
-//     },
-//     {
-//       id: 103,
-//       title: 'Nokia 3310',
-//       price: 5000,
-//       rest: 2,
-//       current: 1,
-//       imgSrc: '/dist/img/nokia.png'
-//     },
-//     {
-//       id: 105,
-//       title: 'Huawei ZZ',
-//       price: 15000,
-//       rest: 8,
-//       current: 1,
-//       imgSrc: '/dist/img/huawei.png'
-//     }
-//   ];
-// }
+function getProducts() {
+  return [
+    {
+      id: 100,
+      title: 'Ipnone 200',
+      price: 12000,
+      rest: 10,
+      current: 1,
+      imgSrc: '/dist/img/iphone.png'
+    },
+    {
+      id: 101,
+      title: 'Samsung AAZ8',
+      price: 22000,
+      rest: 5,
+      current: 1,
+      imgSrc: '/dist/img/samsung.png'
+    },
+    {
+      id: 103,
+      title: 'Nokia 3310',
+      price: 5000,
+      rest: 2,
+      current: 1,
+      imgSrc: '/dist/img/nokia.png'
+    },
+    {
+      id: 105,
+      title: 'Huawei ZZ',
+      price: 15000,
+      rest: 8,
+      current: 1,
+      imgSrc: '/dist/img/huawei.png'
+    }
+  ];
+}

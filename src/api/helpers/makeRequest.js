@@ -1,13 +1,12 @@
 const baseUrl = 'http://localhost/api/';
 
+
+// Здесь раньше был бэк. Сейчас имитация
+
 export default function (url, options = {}, _baseUrl = baseUrl) {
-  return fetch(_baseUrl + url, options)
-    .then((response) => {
-      if (response.status != 200) {
-        return response.text().then((str) => {
-          throw new Error(str)
-        })
-      }
-      return response.json();
-    });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
 }

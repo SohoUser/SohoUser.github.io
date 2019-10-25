@@ -15,29 +15,30 @@ export default class {
 
   @action loadCart = () => {
     return new Promise((resolve) => {
-      this.api.loadCart(this.token)
-        .then(response => {
-          const { cart, needUpdate, token } = response;
-          if (needUpdate) {
-            this.token = token;
-            this.storage.setItem('cartToken', this.token);
-          }
-          this.products = cart;
-          resolve(true);
-        });
+      setTimeout(() => {
+
+      }, 500);
+      // this.api.loadCart(this.token)
+      //   .then(response => {
+      //     const { cart, needUpdate, token } = response;
+      //     if (needUpdate) {
+      //       this.token = token;
+      //       this.storage.setItem('cartToken', this.token);
+      //     }
+      //     this.products = cart;
+      //     resolve(true);
+      //   });
     });
   }
 
   @action add = id => {
     return new Promise((resolve, reject) => {
       if (!this.inCart(id)) {
-        this.api.addToCart(this.token, id)
-          .then(() => {
-            const obj = this.rootStore.product.productInfo(id);
-            this.products.push({ id: obj.id, cnt: 1 })
-            resolve(true);
-          })
-          .catch(() => {});
+        setTimeout(() => {
+          const obj = this.rootStore.product.productInfo(id);
+          this.products.push({ id: obj.id, cnt: 1 });
+          resolve()
+        }, 500);
       } else {
         reject();
       }
@@ -48,13 +49,18 @@ export default class {
     return new Promise((resolve, reject) => {
       const index = this.products.findIndex(item => id == item.id);
       if (index !== -1) {
-        this.api.changeCnt(this.token, id, cnt)
-          .then(response => {
-            if (response) {
-              this.products[index].cnt = cnt;
-              resolve(true);
-            }
-          });
+
+        // this.api.changeCnt(this.token, id, cnt)
+        //   .then(response => {
+        //     if (response) {
+        //       this.products[index].cnt = cnt;
+        //       resolve(true);
+        //     }
+        //   });
+
+        this.products[index].cnt = cnt;
+        resolve(true);
+
       } else {
         reject('Продукт не найден в корзине')
       }
@@ -63,17 +69,27 @@ export default class {
 
   @action delete = id => {
     return new Promise((resolve, reject) => {
+
       const index = this.products.findIndex(item => id == item.id);
       if (index !== -1) {
-        this.api.removeFromCart(this.token, id)
-          .then((response) => {
-            if (response) {
-              this.products.splice(index, 1);
-              resolve(true);
-            }
-          });
+
+        // this.api.removeFromCart(this.token, id)
+        //   .then((response) => {
+        //     if (response) {
+        //       this.products.splice(index, 1);
+        //       resolve(true);
+        //     }
+        //   });
+
+        setTimeout(() => {
+          this.products.splice(index, 1);
+          resolve(true)
+        }, 500);
+
       } else {
+
         reject(false)
+
       }
 
     });
@@ -82,10 +98,10 @@ export default class {
 
   @action resetCart = () => {
     return new Promise((resolve, reject) => {
-     return this.api.resetCart(this.token)
+      return this.api.resetCart(this.token)
         .then(() => {
-         this.products = [];
-         resolve();
+          this.products = [];
+          resolve();
         })
     })
   }
@@ -120,7 +136,7 @@ export default class {
   }
 
   get lastTotal() {
-    return this.lastProducts.reduce((prev,current) => {
+    return this.lastProducts.reduce((prev, current) => {
       return prev += (current.price * current.cnt)
     }, 0);
   }
