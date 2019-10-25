@@ -1,0 +1,12 @@
+.cart {
+  display: flex;
+  color: #fff;
+}
+
+.cart__count {
+  margin: 0 20px 0 0;
+}
+
+.cart__total {
+  margin: 0;
+}

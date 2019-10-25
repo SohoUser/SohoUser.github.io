@@ -1,0 +1,36 @@
+.cart__51516d0 {
+  display: flex;
+  color: #fff;
+}
+
+.cart__count__2ee035b {
+  margin: 0 20px 0 0;
+}
+
+.cart__total__690e337 {
+  margin: 0;
+}
+.preloader__8a0d3b7 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.preloader__text__51d420a {
+  margin: 0 20px 0 20px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #888;
+}
+main {
+  padding: 50px 0 0 0;
+}
+
+.preload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
